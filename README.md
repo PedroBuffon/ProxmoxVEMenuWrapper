@@ -16,7 +16,7 @@ A Bash script that provides an interactive menu interface for browsing and insta
 - `jq` - for parsing JSON data
 - `whiptail` - for displaying interactive menus
 
-## Installation
+## No Installation Required
 
 Run directly with curl or wget:
 
