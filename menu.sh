@@ -18,9 +18,11 @@ show_scripts_menu() {
     
     # Build menu items for scripts in this category
     local menu_items=()
-    while IFS=$'\t' read -r script_slug script_name; do
-        menu_items+=("$script_slug" "$script_name")
-    done < <(echo "$response" | jq -r ".[$category_index].scripts[] | [.slug, .name] | @tsv")
+    local script_index=0
+    while IFS=$'\t' read -r script_name script_type; do
+        menu_items+=("$script_index" "[$script_type] $script_name")
+        ((script_index++))
+    done < <(echo "$response" | jq -r ".[$category_index].scripts[] | [.name, .type] | @tsv")
     
     if [ ${#menu_items[@]} -eq 0 ]; then
         whiptail --title "$category_name" --msgbox "No scripts available in this category." 8 60
@@ -32,7 +34,7 @@ show_scripts_menu() {
     
     if [ -n "$script_choice" ]; then
         # Get script path
-        local script_path=$(echo "$response" | jq -r ".[$category_index].scripts[] | select(.slug==\"$script_choice\") | .install_methods[0].script")
+        local script_path=$(echo "$response" | jq -r ".[$category_index].scripts[$script_choice].install_methods[0].script")
         
         if [ -n "$script_path" ] && [ "$script_path" != "null" ]; then
             # Run the script
