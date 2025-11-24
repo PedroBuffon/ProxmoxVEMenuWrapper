@@ -22,10 +22,10 @@ Run directly with curl or wget:
 
 ```bash
 # Using curl
-sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/PedroBuffon/ProxmoxVEMenuWrapper/main/menu.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/PedroBuffon/ProxmoxVEMenuWrapper/main/menu.sh)"
 
 # Or using wget
-sudo bash -c "$(wget -qO- https://raw.githubusercontent.com/PedroBuffon/ProxmoxVEMenuWrapper/main/menu.sh)"
+bash -c "$(wget -qO- https://raw.githubusercontent.com/PedroBuffon/ProxmoxVEMenuWrapper/main/menu.sh)"
 ```
 
 Alternatively, download and run locally:
